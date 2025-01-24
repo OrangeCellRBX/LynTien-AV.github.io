@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>LynTien AV - 智能终端防御系统</title>
+    <style>
+        :root {
+            --quantum-blue: #00f7ff;
+            --neon-purple: #8a2be2;
+            --cyber-red: #ff073a;
+            --glow-intensity: 0.6;
+            --grid-gap: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        @font-face {
+            font-family: 'Cyberverse';
+            src: url('//db.onlinewebfonts.com/t/0c724c6d4b7b77eafea8c1a547b2dce0.woff2') format('woff2');
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* 品牌展示 */
+        .hero-section {
+            text-align: center;
+            padding: clamp(4rem, 8vw, 6rem) 2rem;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%,
+                rgba(0, 247, 255, 0.1) 0%,
+                transparent 60%);
+            z-index: -1;
+        }
+
+        .product-name {
+            font: 900 clamp(2.2rem, 6vw, 4.5rem) 'Cyberverse', 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            background: linear-gradient(135deg,
+                var(--quantum-blue) 40%,
+                var(--neon-purple) 60%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.1em;
+            margin: 2rem 0;
+            text-shadow: 0 0 15px rgba(0, 247, 255, var(--glow-intensity));
+            line-height: 1.1;
+        }
+
+        /* 全息核心 */
+        .holo-container {
+            width: clamp(200px, 70vw, 400px);
+            height: clamp(200px, 70vw, 400px);
+            margin: 3rem auto;
+            position: relative;
+            perspective: 1200px;
+        }
+
+        .holo-core {
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(
+                var(--quantum-blue),
+                var(--neon-purple),
+                var(--quantum-blue)
+            );
+            border-radius: 50%;
+            animation: holoRotate 20s linear infinite;
+            -webkit-mask:
+                radial-gradient(circle at center, transparent 40%, black 60%),
+                linear-gradient(black, black);
+            mask-composite: exclude;
+            position: relative;
+            filter: drop-shadow(0 0 20px var(--quantum-blue));
+        }
+
+        @keyframes holoRotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 量子粒子系统 */
+        .particle-field {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .quantum-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--quantum-blue);
+            border-radius: 50%;
+            animation:
+                particleOrbit 8s linear infinite,
+                particlePulse 2s ease-in-out infinite;
+            will-change: transform, opacity;
+        }
+
+        @keyframes particleOrbit {
+            from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+        }
+
+        /* 功能特性 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: var(--grid-gap);
+            padding: 4rem clamp(1rem, 5vw, 4rem);
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            border: 1px solid rgba(0, 247, 255, 0.15);
+            border-radius: 1.25rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.1);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg,
+                transparent,
+                rgba(0, 247, 255, 0.15),
+                transparent
+            );
+            animation: featureGlow 6s linear infinite;
+            z-index: -1;
+        }
+
+        .feature-icon {
+            width: clamp(48px, 8vw, 64px);
+            height: clamp(48px, 8vw, 64px);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg,
+                var(--quantum-blue) 40%,
+                var(--neon-purple) 60%);
+            -webkit-mask: var(--icon-svg) center/contain no-repeat;
+            mask: var(--icon-svg) center/contain no-repeat;
+        }
+
+        /* 统一定义图标 */
+        .feature-card:nth-child(1) { --icon-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>'); }
+        .feature-card:nth-child(2) { --icon-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.92 6-4.72 7.28l-1.43-2.34c2.14-1.09 3.15-3.06 3.15-4.94 0-2.76-2.24-5-5-5h-2V7l-5 5 5 5v-3h2c3.31 0 6 2.69 6 6 0 1.43-.5 2.74-1.34 3.77C17.56 21.13 14.39 22 12 22z"/></svg>'); }
+        .feature-card:nth-child(3) { --icon-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm3 15.89l-3-1.67v-3.35l3 1.67v3.35zm1-6.03V8.61l3-1.69v3.35l-3 1.69z"/></svg>'); }
+
+        /* 性能指示条 */
+        .performance-meter {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .performance-bar {
+            height: 100%;
+            width: 98%;
+            background: linear-gradient(90deg,
+                var(--quantum-blue) 0%,
+                var(--neon-purple) 100%);
+            animation: performanceLoad 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .performance-bar::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 16px;
+            background: var(--quantum-blue);
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+
+        /* 下载按钮容器 */
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 下载按钮 */
+        .stealth-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 5rem auto;
+            padding: clamp(1rem, 2vw, 1.4rem) clamp(2rem, 5vw, 3.5rem);
+            background: linear-gradient(135deg,
+                rgba(0, 247, 255, 0.15) 0%,
+                rgba(138, 43, 226, 0.15) 100%);
+            border: 1px solid rgba(0, 247, 255, 0.4);
+            border-radius: 2.5rem;
+            font: 600 clamp(0.9rem, 2vw, 1.1rem) 'Orbitron', sans-serif;
+            color: var(--quantum-blue);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            backdrop-filter: blur(8px);
+        }
+
+        .stealth-download:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 247, 255, 0.3);
+            color: #fff;
+            border-color: var(--quantum-blue);
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+
+            .cta-container {
+                padding: 0 1rem;
+            }
+
+            .stealth-download {
+                margin: 3rem auto;
+                width: 100%;
+                max-width: 320px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .holo-container {
+                width: 85vw;
+                height: 85vw;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <h1 class="product-name">LynTien AV</h1>
+
+        <div class="holo-container">
+            <div class="holo-core">
+                <div class="particle-field" id="particleField"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-grid">
+        <article class="feature-card">
+            <div class="feature-icon"></div>
+            <h3>量子智能防护引擎</h3>
+            <p>亚毫秒级响应速度，实时威胁拦截</p>
+            <div class="performance-meter">
+                <div class="performance-bar" style="width: 99%"></div>
+            </div>
+        </article>
+
+        <article class="feature-card">
+            <div class="feature-icon"></div>
+            <h3>分布式安全云网络</h3>
+            <p>全球威胁情报实时同步</p>
+            <div class="performance-meter">
+                <div class="performance-bar" style="width: 99.9%"></div>
+            </div>
+        </article>
+
+        <article class="feature-card">
+            <div class="feature-icon"></div>
+            <h3>动态行为防护系统</h3>
+            <p>深度进程行为分析引擎</p>
+            <div class="performance-meter">
+                <div class="performance-bar" style="width: 99.5%"></div>
+            </div>
+        </article>
+    </section>
+
+    <div class="cta-container">
+        <button class="stealth-download">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2L3 7l9 5 9-5-9-5zM3 17l9 5 9-5M3 12l9 5 9-5"/>
+            </svg>
+            立即激活防护
+        </button>
+    </div>
+
+    <script>
+        // 量子粒子生成
+        function initParticles() {
+            const container = document.getElementById('particleField');
+            const particles = Array.from({length: 24}, () => {
+                const particle = document.createElement('div');
+                particle.className = 'quantum-particle';
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+                return particle;
+            });
+            container.append(...particles);
+        }
+        initParticles();
+
+        // 按钮交互动画
+        const downloadBtn = document.querySelector('.stealth-download');
+        downloadBtn.addEventListener('click', () => {
+            downloadBtn.animate([
+                { transform: 'scale(1)', opacity: 1 },
+                { transform: 'scale(0.95)', opacity: 0.9 },
+                { transform: 'scale(1.02)', opacity: 1 },
+                { transform: 'scale(1)', opacity: 1 }
+            ], {
+                duration: 400,
+                easing: 'ease-out'
+            });
+        });
+    </script>
+
+    <!-- 预加载资源 -->
+    <link rel="preload" href="//db.onlinewebfonts.com/t/0c724c6d4b7b77eafea8c1a547b2dce0.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet>
+</body>
+</html>
